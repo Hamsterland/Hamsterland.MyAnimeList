@@ -117,7 +117,7 @@ namespace Hamsterland.MyAnimeList.Modules
                 builder.AddField("Maybe?", CreateColumn(columns[2]), true);
             }
             
-            builder.AddField("Still no luck?", $"Search for more users [on the website](https://myanimelist.net/users.php?q={username}&cat=user",true);
+            builder.AddField("Still no luck?", $"Search for more users [on the website](https://myanimelist.net/users.php?q={username}&cat=user)",true);
             
             await ReplyAsync(embed: builder.Build());
         }
