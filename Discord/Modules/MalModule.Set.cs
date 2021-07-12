@@ -14,8 +14,6 @@ namespace Hamsterland.MyAnimeList.Modules
         private readonly Verifier _verifier = new();
         private readonly Random _random = new();
         private readonly Emote _loading = Emote.Parse("<a:loading:818260297118384178>");
-        private readonly Emote _redSparkle = Emote.Parse("<a:tl1SparklesRed:807192797579837440>");
-        private readonly Emote _greenSparkle = Emote.Parse("<a:tl1SparklesGreen:807191823718023168>");
         private const string _failed = "Verification Failed";
         private const string _succeeded = "Verification Succeeded";
         private const ulong _verifiedRoleId = 372178027926519810;
