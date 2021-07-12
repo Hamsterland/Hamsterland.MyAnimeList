@@ -182,7 +182,9 @@ namespace Hamsterland.MyAnimeList.Modules
                         .WithDescription("Your account has been successfully linked—welcome to the server!")
                         .Build();
                 });
-            
+
+                await (Context.User as IGuildUser).AddRoleAsync(_verifiedRoleId);
+                
                 return;
             }
             
