@@ -38,7 +38,7 @@ namespace Hamsterland.MyAnimeList.Services.Activity
         private async Task<double?> GetRawScore(string url)
         {
             var response = await _httpClient.GetAsync(url);
-
+            
             if (!response.IsSuccessStatusCode)
             {
                 return null;
@@ -48,7 +48,7 @@ namespace Hamsterland.MyAnimeList.Services.Activity
             
             if (content.StartsWith("fail"))
             {
-                return null;
+                return 0;
             }
             
             var xmlDoc = new XmlDocument();
