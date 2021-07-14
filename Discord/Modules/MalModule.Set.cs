@@ -11,21 +11,24 @@ namespace Hamsterland.MyAnimeList.Modules
 {
     public partial class MalModule
     {
-        private readonly Verifier _verifier = new();
-        private readonly Random _random = new();
+        private readonly TimeSpan _totalTime = TimeSpan.FromMilliseconds(_maxRetries * _retryWaitPeriod);
         private readonly Emote _loading = Emote.Parse("<a:loading:818260297118384178>");
+        private readonly Random _random = new();
+        private readonly Verifier _verifier = new();
+        
         private const string _failed = "Verification Failed";
         private const string _succeeded = "Verification Succeeded";
         private const ulong _verifiedRoleId = 372178027926519810;
         private const int _maxRetries = 8;
         private const int _retryWaitPeriod = 15000;
-        private readonly TimeSpan _totalTime = TimeSpan.FromMilliseconds(_maxRetries * _retryWaitPeriod);
 
         [Command("set", RunMode = RunMode.Async)]
         [Summary("Links your Discord account to a MyAnimeList account.")]
         public async Task Set(string username)
         {
-            if ((await _accountService.GetByUserId(Context.User.Id))?.MalId is not null)
+            var account = await _accountService.GetByUserId(Context.User.Id);
+            
+            if (account?.MalId is not null)
             {
                 await ReplyAsync("You already have a MyAnimeList account linked to your Discord account. Please contact Modmail for further help.");
                 return;
