@@ -113,6 +113,7 @@ namespace MAL.Parsers
                 {
                     var scores = element.GetElementsByClassName("di-ib fl-r lh10")
                         .Select(y => y.TextContent)
+                        .Select(x => x.Replace(",", string.Empty))
                         .Select(int.Parse)
                         .ToList();
 
