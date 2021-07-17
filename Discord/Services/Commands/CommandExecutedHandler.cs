@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Discord;
@@ -23,7 +24,7 @@ namespace Hamsterland.MyAnimeList.Services.Commands
         public async Task Handle(CommandExecutedNotification notification, CancellationToken cancellationToken)
         {
             var (command, context, result) = notification.Deconstruct();
-
+            
             var hamsterlandCommandContext = context as HamsterlandCommandContext;
             hamsterlandCommandContext.ServiceScope.Dispose();
 
