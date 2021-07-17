@@ -89,7 +89,7 @@ namespace Hamsterland.MyAnimeList.Modules
                         {
                             sb.AppendLine($"- {result.Type}");
 
-                            if (result.Type == VerifierResultType.Image)
+                            if (result is { Type: VerifierResultType.Image, ImageUrl: not null })
                             {
                                 builder.WithImageUrl(result.ImageUrl);
                             }
