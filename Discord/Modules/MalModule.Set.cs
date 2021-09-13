@@ -71,9 +71,12 @@ namespace Hamsterland.MyAnimeList.Modules
             
             var profile = new ProfileFactory(profilePage).BuildFullProfile();
 
-            if (profile.PeopleFavourites.Any(x => x.Name.Contains("Hitler")))
+            if (profile.PeopleFavourites.Count > 0)
             {
-                return;
+                if (profile.PeopleFavourites.Any(x => x.Name.Contains("Hitler")))
+                {
+                    return;
+                }
             }
             
             var roleIds = (Context.User as IGuildUser).RoleIds.ToList();
