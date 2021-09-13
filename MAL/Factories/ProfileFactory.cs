@@ -66,8 +66,10 @@ namespace MAL.Factories
         {
             var animeFavourites = _profilePage.GetFavourites(FavouriteSelector.Anime)?.ToList();
             var mangaFavourites = _profilePage.GetFavourites(FavouriteSelector.Manga)?.ToList();
+            var peopleFavourites = _profilePage.GetFavourites(FavouriteSelector.People)?.ToList();
             _profile.AnimeFavourites = animeFavourites;
             _profile.MangaFavourites = mangaFavourites;
+            _profile.PeopleFavourites = peopleFavourites;
             return this;
         }
 

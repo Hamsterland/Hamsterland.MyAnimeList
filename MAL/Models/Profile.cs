@@ -20,5 +20,6 @@ namespace MAL.Models
         public string LastOnline { get; set; }
         public List<Favourite> AnimeFavourites { get; set; }
         public List<Favourite> MangaFavourites { get; set; }
+        public List<Favourite> PeopleFavourites { get; set; }
     }
 }

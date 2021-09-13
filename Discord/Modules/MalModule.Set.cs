@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Hamsterland.MyAnimeList.Services.Verification;
+using MAL.Factories;
 using MAL.Parsers;
 
 namespace Hamsterland.MyAnimeList.Modules
@@ -39,13 +40,13 @@ namespace Hamsterland.MyAnimeList.Modules
                 await ReplyAsync("Are you sure your MAL account is called \"username\"? Replace this with your actual MAL username.");
                 return;
             }
-
+            
             var builder = new EmbedBuilder()
                 .WithColor(Constants.DefaultColour)
                 .WithUserAsAuthor(Context.User);
             
             var profilePage = await _profileDownloader.DownloadProfileDocument(username);
-            
+
             if (profilePage is null)
             {
                 builder
@@ -66,6 +67,13 @@ namespace Hamsterland.MyAnimeList.Modules
                     await ReplyAsync("Another user has already linked this MyAnimeList account to their Discord. Please contact Modmail for further help.");
                     return;
                 }
+            }
+            
+            var profile = new ProfileFactory(profilePage).BuildFullProfile();
+
+            if (profile.PeopleFavourites.Any(x => x.Name.Contains("Hitler")))
+            {
+                return;
             }
             
             var roleIds = (Context.User as IGuildUser).RoleIds.ToList();

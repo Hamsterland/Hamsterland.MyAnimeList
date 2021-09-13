@@ -135,6 +135,7 @@ namespace MAL.Parsers
             {
                 FavouriteSelector.Anime => "anime",
                 FavouriteSelector.Manga => "manga",
+                FavouriteSelector.People => "people",
                 _ => "anime" // Fallback to anime in case something goes wrong
             };
 
