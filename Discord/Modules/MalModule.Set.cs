@@ -71,7 +71,7 @@ namespace Hamsterland.MyAnimeList.Modules
             
             var profile = new ProfileFactory(profilePage).BuildFullProfile();
 
-            if (profile.PeopleFavourites.Count > 0)
+            if (profile.PeopleFavourites?.Count > 0)
             {
                 if (profile.PeopleFavourites.Any(x => x.Name.Contains("Hitler")))
                 {

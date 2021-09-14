@@ -150,6 +150,11 @@ namespace MAL.Parsers
                     .OfType<IHtmlAnchorElement>()
                     .FirstOrDefault();
 
+                if (anchor is null)
+                {
+                    return null;
+                }
+                
                 return new Favourite(anchor.TextContent, anchor.Href);
             });
         }
