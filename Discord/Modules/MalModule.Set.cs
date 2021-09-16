@@ -68,7 +68,7 @@ namespace Hamsterland.MyAnimeList.Modules
                     return;
                 }
             }
-            
+
             // var profile = new ProfileFactory(profilePage).BuildFullProfile();
             //
             // if (profile.PeopleFavourites?.Count > 0)
