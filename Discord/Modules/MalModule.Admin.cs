@@ -10,7 +10,24 @@ namespace Hamsterland.MyAnimeList.Modules
         [Command("verify")]
         [Summary("Gives the verified role to a user.")]
         [RequireUserPermission(GuildPermission.BanMembers)]
+        [Priority(10)]
         public async Task Verify(IGuildUser user)
+        {
+            if (user.RoleIds.Contains(_verifiedRoleId))
+            {
+                await ReplyAsync("This user already has the verified role.");
+                return;
+            }
+
+            await user.AddRoleAsync(_verifiedRoleId);
+            await ReplyAsync($"Given the verified role to this {user}");
+        }
+        
+        [Command("verify")]
+        [Summary("Gives the verified role to a user.")]
+        [RequireOwner]
+        [Priority(5)]
+        public async Task VerifyModerator(IGuildUser user)
         {
             if (user.RoleIds.Contains(_verifiedRoleId))
             {
@@ -26,7 +43,7 @@ namespace Hamsterland.MyAnimeList.Modules
         [Summary("Unlinks a user's Discord account from their MyAnimeList account.")]
         [RequireOwner]
         [Priority(10)]
-        public async Task Unlink(IGuildUser user)
+        public async Task Unlink(IUser user)
         {
             await _accountService.Delete(user.Id);
             await ReplyAsync($"Unliked {user}'s Discord account from their MyAnimeList account.");
@@ -36,7 +53,7 @@ namespace Hamsterland.MyAnimeList.Modules
         [Summary("Unlinks a user's Discord account from their MyAnimeList account.")]
         [RequireUserPermission(GuildPermission.BanMembers)]
         [Priority(5)]
-        public async Task UnlinkModerator(IGuildUser user)
+        public async Task UnlinkModerator(IUser user)
         {
             await Unlink(user);
         }
