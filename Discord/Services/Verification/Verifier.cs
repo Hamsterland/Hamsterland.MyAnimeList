@@ -104,7 +104,20 @@ namespace Hamsterland.MyAnimeList.Services.Verification
         // ReSharper disable once UseDeconstructionOnParameter
         private static bool MeetsMinimumActivityThreshold(ActivityScore activityScore)
         {
-            return (1 / (activityScore?.Anime + 7.5)) + (1 / (activityScore?.Manga + 7.5)) > 1 / 7.5;
+            // return (1 / (activityScore?.Anime + 7.5)) + (1 / (activityScore?.Manga + 7.5)) > 1 / 7.5;
+            
+            if (activityScore.Anime is > 0.1 and < 14)
+            {
+                return true;
+            }
+            
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (activityScore.Manga is > 0.1 and < 14)
+            {
+                return true;
+            }
+                
+            return false;
         }
     }
 }
